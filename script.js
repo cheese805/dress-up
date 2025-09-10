@@ -59,6 +59,7 @@ const ITEMS = {
     { id: "acc_5", name: "소품4", src: "assets/accessory/acc_5.png" },
     { id: "acc_6", name: "소품4", src: "assets/accessory/acc_6.png" },
     { id: "acc_7", name: "소품4", src: "assets/accessory/acc_7.png" },
+    { id: "acc_8", name: "소품4", src: "assets/accessory/acc_8.png" },
   ],
 };
 
@@ -303,3 +304,4 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
