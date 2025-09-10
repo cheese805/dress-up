@@ -72,6 +72,7 @@ const OVERLAY_FRAMES = [
 
 // 최소 1개를 항상 유지할 카테고리
 const REQUIRED_CATS = ["eyes", "mouth", "hair", "top"];
+const TOGGLEABLE_CATS = ["jacket"];                       // 재클릭 시 해제 허용
 
 function mountOverlayFrames() {
   const stageInnerEl = document.querySelector(".stage-inner");
@@ -203,35 +204,30 @@ function renderGrid() {
 
 /** 썸네일 클릭 */
 
-// ⬇️ 이 함수로 교체
 function onThumbClick(item, cat) {
   if (cat === MULTI_CAT) {
-    // --- 소품: 토글 선택/해제 ---
     const i = accessories.indexOf(item.id);
-    if (i >= 0) {
-      accessories.splice(i, 1);         // 해제
-    } else {
-      accessories.push(item.id);         // 선택 (선택 순서가 곧 위에 쌓이는 순서)
-    }
-
-    // 🔵 선택 결과를 '베이스 소품 → 그 외' 순으로 재정렬
-    // (베이스들은 항상 맨 아래, 서로 간에는 ACCESSORY_BASE_IDS 순서대로)
-    reorderAccessories();
-
+    if (i >= 0) accessories.splice(i, 1);
+    else accessories.push(item.id);
+    reorderAccessories?.();
   } else {
-    // --- 단일 카테고리: 교체만 허용 (해제 금지) ---
-    if (selected[cat] === item.id) return; // 같은 걸 다시 눌러도 해제되지 않음
-    selected[cat] = item.id;
+    if (REQUIRED_CATS.includes(cat)) {
+      // 필수 카테고리: 해제 금지, 교체만
+      if (selected[cat] === item.id) return;
+      selected[cat] = item.id;
+    } else if (TOGGLEABLE_CATS.includes(cat)) {
+      // 겉옷: 같은 걸 또 누르면 해제
+      selected[cat] = (selected[cat] === item.id) ? null : item.id;
+    } else {
+      // 기타 단일 카테고리 기본 동작(필요 시 확장)
+      selected[cat] = (selected[cat] === item.id) ? null : item.id;
+    }
   }
 
-  // 안전빵: 필수 카테고리 기본값 유지
-  ensureRequiredSelected?.();
-
-  // UI 갱신
+  ensureRequiredSelected?.();  // 안전빵
   renderGrid();
   renderLayers();
 }
-
 
 /** 탭 이벤트 */
 tabsEls.forEach((tab) => {
@@ -304,4 +300,5 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
 
