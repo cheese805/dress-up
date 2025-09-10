@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>강아지 옷입히기</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Pretendard ExtraLight 프리로드 (선택) -->
+  <link rel="preload" as="font" type="font/woff2" href="./fonts/Pretendard-ExtraLight.woff2" crossorigin>
+</head>
+<body>
+  <div class="page">
+    <div class="app-card">
+      <!-- 상단 툴바 -->
+        <header class="toolbar">
+            <button id="saveBtn" class="btn-link">저장하기</button>
+
+            <!-- 홈 버튼: 이미지 아이콘 -->
+            <button id="homeBtn" class="btn-icon" aria-label="홈으로"
+                    data-fallback="/">
+                <img class="icon-home" src="assets/home.png" alt="">
+            </button>
+        </header>
+
+
+      <!-- 본문: 좌(미리보기) · 우(탭+아이템) -->
+      <main class="app">
+        <!-- 좌: 미리보기 -->
+        <section class="stage" aria-label="미리보기">
+          <div class="stage-inner">
+            <div id="layers" class="layers">
+              <!-- 기본 바디 (필요 시 이미지 교체) -->
+              <img src="assets/base.png" alt="기본 바디" class="layer">
+            </div>
+          </div>
+        </section>
+
+        <!-- 우: 탭 + 아이템 패널 -->
+        <aside class="side">
+          <nav class="tabs" role="tablist" aria-label="아이템 카테고리">
+            <button class="tab is-active" data-cat="eyes">눈</button>
+            <button class="tab" data-cat="mouth">입</button>
+            <button class="tab" data-cat="hair">헤어</button>
+            <button class="tab" data-cat="top">상의</button>
+            <button class="tab" data-cat="jacket">겉옷</button>
+            <button class="tab" data-cat="accessory">소품</button>
+          </nav>
+
+          <section class="panel" aria-label="아이템 리스트">
+            <div class="panel-inner">
+              <div id="itemGrid" class="grid"></div>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
