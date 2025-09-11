@@ -258,3 +258,24 @@ body {
     gap: 12px;
   }
 }
+
+/* 안내 오버레이 */
+.guide-overlay{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,.45);
+  opacity: 1; transition: opacity .2s ease;
+}
+.guide-overlay.hidden{ opacity: 0; pointer-events: none; }
+
+.guide-dialog{
+  width: min(560px, calc(100vw - 40px));
+  background: #fff; color:#222;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.18);
+  padding: 20px 22px;
+  text-align: center; line-height: 1.6;
+}
+.guide-dialog h2{ margin: 0 0 8px; font-size: 18px; font-weight: 600; }
+.guide-dialog .muted{ margin: 10px 0 0; color:#666; font-size: 13px; }
+
