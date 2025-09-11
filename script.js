@@ -299,6 +299,29 @@ function init() {
   if (saveBtn) saveBtn.addEventListener("click", exportJPG);
 }
 
-document.addEventListener("DOMContentLoaded", init);
+function setupGuideOverlay() {
+  const overlay = document.getElementById("guideOverlay");
+  if (!overlay) return;
+
+  // 페이지 들어오면 보여주기
+  overlay.classList.remove("hidden");
+
+  // 아무 데나 클릭하면 닫힘 (다이얼로그 포함)
+  overlay.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+  });
+
+  // Esc로도 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") overlay.classList.add("hidden");
+  });
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  setupGuideOverlay();   // ✅ 안내 오버레이 세팅
+});
+
 
 
