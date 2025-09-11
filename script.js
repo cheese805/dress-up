@@ -117,19 +117,13 @@ let currentCat = "eyes";
 let selected = { eyes: null, mouth: null, hair: null, top: null, jacket: null };
 let accessories = []; // 선택 순서 유지 (베이스는 항상 0번)
 
-// 홈 버튼: 브라우저 뒤로가기, 없으면 fallback으로 이동
+
+/* 홈버튼 */
 const homeBtn = document.getElementById("homeBtn");
 if (homeBtn) {
   homeBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (window.history.length > 1) {
-      window.history.back();
-    } else if (document.referrer) {
-      location.assign(document.referrer);
-    } else {
-      const fb = homeBtn.dataset.fallback || "/";
-      location.assign(fb);
-    }
+    location.href = "https://hongsungwon.space/game.html";
   });
 }
 
@@ -322,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   init();
   setupGuideOverlay();   // ✅ 안내 오버레이 세팅
 });
+
 
 
 
