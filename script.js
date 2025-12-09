@@ -123,7 +123,7 @@ const homeBtn = document.getElementById("homeBtn");
 if (homeBtn) {
   homeBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    location.href = "https://hongsungwon.space/game.html";
+    location.href = "https://hongsungwon.space/index.html";
   });
 }
 
@@ -316,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   init();
   setupGuideOverlay();   // ✅ 안내 오버레이 세팅
 });
+
 
 
 
